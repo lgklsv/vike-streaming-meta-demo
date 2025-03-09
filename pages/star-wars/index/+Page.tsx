@@ -1,16 +1,27 @@
 import React from "react";
-import { useData } from "vike-react/useData";
-import type { Data } from "./+data.js";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { Config } from "vike-react/Config";
+import { Head } from "vike-react/Head";
 
 export default function Page() {
-  const movies = useData<Data>();
+  const query = useSuspenseQuery({
+    queryKey: ["movies"],
+    queryFn: () => fetch("https://star-wars.brillout.com/api/films.json").then((res) => res.json()),
+  });
+
+  const movies = query.data.results;
+
   return (
     <>
+      <Config title={`${movies.length} Star Wars Movies`} />
+      <Head>
+        <meta name="description" content={`All ${movies.length} movies from the Star Wars franchise.`} />
+      </Head>
       <h1>Star Wars Movies</h1>
       <ol>
-        {movies.map(({ id, title, release_date }) => (
-          <li key={id}>
-            <a href={`/star-wars/${id}`}>{title}</a> ({release_date})
+        {movies.map((movie: { episode_id: string; title: string; release_date: string }) => (
+          <li key={movie.episode_id}>
+            {movie.title} ({movie.release_date})
           </li>
         ))}
       </ol>
