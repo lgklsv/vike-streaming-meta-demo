@@ -13,7 +13,7 @@ export default {
   // https://vike.dev/head-tags
   title: "My Vike App",
   description: "Demo showcasing Vike",
-  stream: "web",
+  // stream: "web",
 
   extends: [vikeReact, vikeReactQuery],
 } satisfies Config;
