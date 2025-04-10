@@ -2,7 +2,7 @@
 
 import eslint from "@eslint/js";
 import prettier from "eslint-plugin-prettier/recommended";
-import react from "eslint-plugin-react/configs/recommended.js";
+import react from "eslint-plugin-react/configs/recommended";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 

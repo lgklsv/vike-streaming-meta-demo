@@ -1,18 +1,11 @@
-import { serve } from "@hono/node-server";
 import { Hono } from "hono";
-import vike from "vike-node/hono";
-
-startServer();
+import { apply } from "vike-server/hono";
+import { serve } from "vike-server/hono/serve";
 
 function startServer() {
   const app = new Hono();
-  app.use(vike());
-  const port = 3000;
-  serve(
-    {
-      fetch: app.fetch,
-      port,
-    },
-    () => console.log(`Server running at http://localhost:${port}`),
-  );
+  apply(app);
+  return serve(app, { port: 3000 });
 }
+
+export default startServer();

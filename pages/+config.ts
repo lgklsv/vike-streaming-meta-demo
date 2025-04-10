@@ -1,8 +1,8 @@
 import vikeReact from "vike-react/config";
 import type { Config } from "vike/types";
-import Layout from "../layouts/LayoutDefault.js";
+import Layout from "../layouts/LayoutDefault";
 import vikeReactQuery from "vike-react-query/config";
-
+import vikeServer from "vike-server/config";
 // Default config (can be overridden by pages)
 // https://vike.dev/config
 
@@ -15,5 +15,6 @@ export default {
   description: "Demo showcasing Vike",
   stream: "web",
 
-  extends: [vikeReact, vikeReactQuery],
+  extends: [vikeServer, vikeReact, vikeReactQuery],
+  server: "server/index.js",
 } satisfies Config;

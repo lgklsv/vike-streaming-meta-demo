@@ -4,7 +4,7 @@ import "./tailwind.css";
 
 import React from "react";
 import logoUrl from "../assets/logo.svg";
-import { Link } from "../components/Link.js";
+import { Link } from "../components/Link";
 
 export default function LayoutDefault({ children }: { children: React.ReactNode }) {
   return (
